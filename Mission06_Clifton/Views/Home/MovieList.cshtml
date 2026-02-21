@@ -2,8 +2,8 @@
 
 <h2>All Movies</h2>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
         <tr>
             <th>Title</th>
             <th>Category</th>
@@ -13,6 +13,7 @@
             <th>Edited</th>
             <th>Lent To</th>
             <th>Notes</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -27,8 +28,11 @@
                 <td>@(movie.Edited == true ? "Yes" : "No")</td>
                 <td>@movie.LentTo</td>
                 <td>@movie.Notes</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@movie.MovieId" class="btn btn-sm btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@movie.MovieId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
             </tr>
-        
         }
     </tbody>
 </table>
