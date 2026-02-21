@@ -8,10 +8,12 @@ namespace Mission06_Clifton.Controllers
     public class HomeController : Controller
     {
         private MoviesContext _context;
+
         public HomeController(MoviesContext temp)
         {
             _context = temp;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -31,11 +33,16 @@ namespace Mission06_Clifton.Controllers
         [HttpPost]
         public IActionResult MovieForm(Movie response)
         {
-            _context.Movies.Add(response); //Add record to database
+            _context.Movies.Add(response); // Add record to database
             _context.SaveChanges();
             return View("Confirmation");
         }
 
-
+        // NEW ACTION: Display all movies
+        public IActionResult MovieList()
+        {
+            var movies = _context.Movies.ToList(); // Fetch all movies
+            return View(movies);                   // Pass to view
+        }
     }
 }
