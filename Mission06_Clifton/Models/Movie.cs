@@ -1,32 +1,37 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Mission06_Clifton.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mission06_Clifton.Models
 {
     public class Movie
     {
         [Key]
-        public int MovieID { get; set; }   // Primary Key
+        public int MovieId { get; set; }
+
+        public int? CategoryId { get; set; }
+
+        public Category? Category { get; set; }
 
         [Required]
         public string Title { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        [Range(1888, int.MaxValue, ErrorMessage = "Year must be 1888 or later")]
+        public int Year { get; set; }
+
+        public string? Director { get; set; }
+
+        public string? Rating { get; set; }
 
         [Required]
-        public int Year { get; set; }      // Use int instead of DateOnly
+        public bool Edited { get; set; }
+
+        public string? LentTo { get; set; }
 
         [Required]
-        public string Director { get; set; }
-
-        [Required]
-        public string Rating { get; set; } // Dropdown
-
-        public bool? Edited { get; set; }   // optional
-
-        public string? Lent { get; set; }   // optional
+        public bool CopiedToPlex { get; set; }
 
         [MaxLength(25)]
-        public string? Notes { get; set; }  // optional, max 25
+        public string? Notes { get; set; }
     }
 }
